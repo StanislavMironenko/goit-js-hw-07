@@ -54,11 +54,15 @@ document.addEventListener("keyup", function (e) {
     if (e.key !== "Escape") {
       return;
   } if (document.querySelector(".basicLightbox--visible")) {
-       document
-        .querySelector(".basicLightbox--visible")
-        .classList.remove("basicLightbox--visible");
-    } else {
+    document
+      .querySelector(".basicLightbox--visible")
+      .classList.remove("basicLightbox--visible");
+    setTimeout(closeLightbox,500);
+  } else {
       return
     }
 });
 
+function closeLightbox() {
+  document.querySelector(".basicLightbox ").remove();
+}
