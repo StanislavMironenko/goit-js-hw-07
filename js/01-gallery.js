@@ -50,17 +50,15 @@ function onImageClick(e) {
 
 
 
-document.addEventListener("keyup", function (e) {  
+document.addEventListener("keydown", function (e) {  
     if (e.key !== "Escape") {
-      return;
-  } if (document.querySelector(".basicLightbox--visible")) {
-    document
-      .querySelector(".basicLightbox--visible")
-      .classList.remove("basicLightbox--visible");
-    setTimeout(closeLightbox,500);
-  } else {
-      return
-    }
+      return;     
+  }
+  const modal = document.querySelector(".basicLightbox")
+  if (modal) {
+    modal.classList.remove("basicLightbox--visible");
+    setTimeout(closeLightbox, 500);
+  } 
 });
 
 function closeLightbox() {
