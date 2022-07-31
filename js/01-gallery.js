@@ -9,6 +9,14 @@ galleryImages.insertAdjacentHTML("beforeend",imageColections);
 
 galleryImages.addEventListener('click', onImageClick);
 
+const lightboxConfig = {
+  onShow: ()=> {
+   document.addEventListener("keydown", onEscButtonPush); 
+  },
+  onClose: () => {
+     document.removeEventListener("keydown", onEscButtonPush);
+  }
+}
 function createImagesColection(items) {
 
  return  items.map(({preview,description,original }) => {
@@ -38,12 +46,15 @@ function onImageClick(e) {
     }
   const imgModal = e.target.dataset.source;
     
-    const instance = basicLightbox.create(`
+    const instance = basicLightbox.create(
+      `
         <img src="${imgModal}" width="800" height="600">
-    `);
+    `,
+      lightboxConfig
+    );
    
   instance.show();
-  document.addEventListener("keydown", onEscButtonPush);
+  
 }
 
   function onEscButtonPush(e) {
@@ -59,6 +70,6 @@ function onImageClick(e) {
 
 function closeLightbox() {
   document.querySelector(".basicLightbox ").remove();
-  document.removeEventListener("keydown", onEscButtonPush);
+ 
 
 }
